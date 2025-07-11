@@ -74,7 +74,12 @@ function ExamStatusCheck() {
 
   // If exam is not active, redirect to blocked page
   if (exam && !isActive) {
-    return <Navigate to={`/exam/blocked/${id}`} replace />;
+    // Only redirect if we're not already on the blocked page
+    if (!location.pathname.includes('/blocked')) {
+      return <Navigate to={`/exam/${id}/blocked`} replace />;
+    }
+    // If we're already on the blocked page, just render the children
+    return <Outlet context={{ exam }} />;
   }
 
   // If we have an exam and it's active, render the child routes with exam data

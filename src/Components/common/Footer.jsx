@@ -2,11 +2,11 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div>
-            <div className="footer-info">
-            @2024 Examlytic. All rights reserved.
-            </div>
-        </div>
+    <footer className="footer">
+    <div className="footer-info">
+      © 2024 <span className="brand">Examlytic</span>. All rights reserved.
+    </div>
+  </footer>
   );
 };
 

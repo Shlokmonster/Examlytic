@@ -12,6 +12,7 @@ import ExamAttempt from "./Pages/ExamAttempt"
 import ExamBlocked from "./Pages/ExamBlocked";
 import ExamStatusCheck from "./components/ExamStatusCheck";
 import ExamRedirect from "./Pages/ExamRedirect";
+import Examcode from "./Pages/Examcode";
 
 function App() {
   const { user, loading } = useAuth()
@@ -44,27 +45,29 @@ function App() {
 
   return (
     <Routes>
+      {/* Common Exam Routes */}
+      <Route path="/exam/:id" element={<ExamStatusCheck />}>
+        <Route index element={<ExamIntro />} />
+        <Route path="attempt" element={<ExamAttempt />} />
+        <Route path="blocked" element={<ExamBlocked />} />
+      </Route>
+
       {/* Admin Routes */}
       {role === "admin" && (
         <>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/create" element={<CreateExam />} />
-          <Route path="*" element={<Navigate to="/admin/dashboard" />} />
+          <Route path="/" element={<AdminDashboard />} />
+          <Route path="/create-exam" element={<CreateExam />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </>
       )}
 
       {/* Student Routes */}
       {role === "student" && (
         <>
-          <Route path="/student" element={<StudentExamPage />} />
-          <Route element={<ExamStatusCheck />}>
-            <Route path="/exam/intro/:id" element={<ExamIntro />} />
-            <Route path="/exam/attempt/:id" element={<ExamAttempt />} />
-          </Route>
-          {/* Handle direct exam links from admin dashboard */}
-          <Route path="/exam/:id" element={<ExamRedirect />} />
-          <Route path="/exam/blocked/:id" element={<ExamBlocked />} />
-          <Route path="*" element={<Navigate to="/exam/intro" />} />
+          <Route path="/examcode" element={<Examcode />} />
+          <Route path="/exam" element={<StudentExamPage />} />
+          <Route path="/" element={<Navigate to="/examcode" replace />} />
+          <Route path="*" element={<Navigate to="/examcode" replace />} />
         </>
       )}
     </Routes>

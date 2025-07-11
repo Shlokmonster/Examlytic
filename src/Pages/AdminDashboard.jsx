@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import supabase from "../SupabaseClient"
 import Navbar from "../Components/common/Navbar"
-import Footer from "../Components/common/Footer"
+
 import { toast } from "react-toastify"
 import { FaLock, FaUnlock, FaEye, FaTrash, FaEdit } from "react-icons/fa"
 
@@ -501,7 +501,7 @@ export default function AdminDashboard() {
             <h1>Exam Dashboard</h1>
             <p>Manage and monitor your exams</p>
           </div>
-          <Link to="/admin/create" className="create-exam-btn">
+          <Link to="/create-exam" className="create-exam-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -526,7 +526,7 @@ export default function AdminDashboard() {
             <div className="no-exams-icon">📝</div>
             <h3>No Exams Found</h3>
             <p>Get started by creating your first exam</p>
-            <Link to="/admin/create" className="create-exam-btn">
+            <Link to="/create-exam" className="create-exam-btn">
               Create Your First Exam
             </Link>
           </div>
@@ -609,7 +609,7 @@ export default function AdminDashboard() {
           </div>
         )}
       </div>
-      <Footer />
+
       
       {isModalOpen && selectedExam && (
         <QuestionModal 
